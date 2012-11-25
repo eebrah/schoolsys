@@ -1,0 +1,82 @@
+* {
+	padding: 0;
+	margin: 0;
+
+}
+
+body {
+	background-color: white;
+	color: black;
+	
+	font-family: sans-serif;
+
+}
+
+div.body {
+	clear: both;
+	
+	padding: 5em;
+
+}
+
+div.header {
+	background-color: blue;
+	
+	min-height: 2.2em;
+
+}
+
+table.fancy {
+	border-collapse: collapse;
+
+}
+
+table.fancy thead {
+	background-color: blue;
+
+}
+
+table.fancy thead th {
+	color: white;
+	
+	text-transform: uppercase;
+
+	padding: 0.5em 1em;
+}
+
+table.fancy tbody {}
+
+table.fancy tbody tr:hover {
+	background-color: orange;
+
+}
+
+table.fancy tbody td {
+	padding: 0.4em 1em;
+
+}
+
+table.fancy ul {
+	list-style: none;
+
+}
+
+table.fancy ul li {
+	display: inline;
+
+}
+
+table.fancy ul li a {
+	text-decoration: none;
+	
+	background-color: blue;
+	color: white;
+	
+	text-transform: uppercase;
+	
+	font-size: 0.8em;
+	font-weight: bold;
+	
+	padding: 0.5em 1em;
+
+}

@@ -1,0 +1,2 @@
+2012-08-08 1830	Interfaces	The Classes enabling both students and employees to be added to the system and edited have been completed. The HTML interfaces to allow those operations are the next step.
+2012-10-28 1030	HTML Forms	Managed to complete HTML input forms for registering of students and addition of subjects and streams into the system.
