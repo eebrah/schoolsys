@@ -1,3 +1,5 @@
 #SchoolSys
 
-Open source, Web based School records management system yadda yadda
+Open source, Web based School records management system
+
+##Installation

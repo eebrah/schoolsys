@@ -146,8 +146,7 @@ INSERT INTO `studentDetails` (
 	, `schoolID`
 	, `dateOfAdmission`
 	, `yearOfStudyAtAdmission`
-	, `gender`
-	, `KCPEScore` 
+	, `gender` 
 )
 VALUES (
 	  "' . mysql_escape_string( $this -> getUniqueID() ) . '"
@@ -155,7 +154,6 @@ VALUES (
 	, "' . mysql_escape_string( $this -> getDateOfAdmission() ) . '"
 	, "' . mysql_escape_string( $this -> getYearOfStudyAtAdmission() ) . '"
 	, "' . mysql_escape_string( $this -> getGender() ) . '"
-	, "' . mysql_escape_string( $this -> getKCPEScore() ) . '"
 )';
 
 		$query2 = '
@@ -234,7 +232,6 @@ SELECT
 	, `dateOfAdmission`
 	, `yearOfStudyAtAdmission`
 	, `gender` 
-	, `KCPEScore`
 FROM
 	`studentDetails`
 WHERE
@@ -258,7 +255,7 @@ WHERE
 					$this -> setDateOfAdmission( $row[ "dateOfAdmission" ] );
 					$this -> setYearOfStudyAtAdmission( $row[ "yearOfStudyAtAdmission" ] );
 					$this -> setGender( $row[ "gender" ] );
-					$this -> setKCPEScore( $row[ "KCPEScore" ] );
+				//	$this -> setKCPEScore( $row[ "KCPEScore" ] );
 				
 					$returnValue = true;
 				   

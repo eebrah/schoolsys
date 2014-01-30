@@ -3,6 +3,11 @@
 session_start();
 
 require_once( "Base.class.php" );
+require_once( "Person.class.php" );
+require_once( "Employee.class.php" );
+require_once( "Student.class.php" );
+require_once( "Subject.class.php" );
+require_once( "Stream.class.php" );
 
 {	// Data
 	
