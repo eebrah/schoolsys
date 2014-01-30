@@ -260,4 +260,53 @@ WHERE
 
 }
 
+function getSubjects( $filter = "all" ) {	GLOBAL $dbh;
+	
+	$returnValue = Array();
+	
+	$query = '
+SELECT
+	`uniqueID`
+FROM
+	`subjectDetails`
+WHERE';
+	
+	switch( $filter ) {
+		
+		case "all" :
+		default : {
+			
+			$query .= '
+	1';
+		
+		}
+		break;
+		
+	}
+
+	try {
+
+		$statement = $dbh -> prepare( $query );
+		$statement -> execute();
+		
+		$results = $statement -> fetchAll();
+			
+		foreach( $results as $result ) {
+			
+			array_push( $returnValue, $result[ "uniqueID" ] );
+			
+		}
+		
+	} 
+	catch( PDOException $e ) {
+		
+	   print "Error!: " . $e -> getMessage() . "<br/>";			   
+	   die();
+	   
+	}
+	
+	return $returnValue;
+
+}
+
 ?>

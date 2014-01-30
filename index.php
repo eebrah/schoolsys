@@ -2,7 +2,7 @@
 
 session_start();
 
-require_once( "Class.php" );
+require_once( "Base.class.php" );
 
 {	// Data
 	

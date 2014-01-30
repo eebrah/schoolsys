@@ -262,4 +262,70 @@ WHERE
 
 }
 
+function getTests( $type = "all" ) {
+	
+	GLOBAL $dbh;
+	
+	$returnValue = Array();
+	
+	$query = '
+SELECT
+	`uniqueID`
+FROM
+	`testDetails`
+WHERE';
+	
+	switch( $type ) {
+	
+		case "exam" : {
+			
+			$query .= '
+	`type` = "2"';
+		
+		}
+		break;
+	
+		case "cat" : {
+			
+			$query .= '
+	`type` = "1"';
+		
+		}
+		break;
+		
+		case "all" : {
+			
+			$query .= '
+	1';
+		
+		}
+		break;
+		
+	}
+
+	try {
+
+		$statement = $dbh -> prepare( $query );
+		$statement -> execute();
+		
+		$results = $statement -> fetchAll();
+			
+		foreach( $results as $result ) {
+			
+			array_push( $returnValue, $result[ "uniqueID" ] );
+			
+		}
+		
+	} 
+	catch( PDOException $e ) {
+		
+	   print "Error!: " . $e -> getMessage() . "<br/>";			   
+	   die();
+	   
+	}
+	
+	return $returnValue;
+
+}
+
 ?>
