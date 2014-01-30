@@ -69,7 +69,7 @@ Class base {
 
 }
 
-class Person extends Base {
+Class Person extends Base {
 	
 	private $surName;
 	private $otherNames;
@@ -243,7 +243,7 @@ WHERE
 
 }
 
-class Student extends Person {
+Class Student extends Person {
 	
 	private $schoolID;
 //	private $dateOfBirth;
@@ -629,7 +629,7 @@ WHERE
 
 }
 
-class Employee extends Person {
+Class Employee extends Person {
 	
 	private $IDNumber;
 	private $KRAPIN;
@@ -848,13 +848,13 @@ WHERE
 
 }
 
-class Teacher extends Employee {
+Class Teacher extends Employee {
 	
 
 
 }
 
-class Subject extends Base {
+Class Subject extends Base {
 	
 	private $code;
 	private $name;
@@ -1112,7 +1112,7 @@ WHERE
 
 }
 
-class Stream extends Base {
+Class Stream extends Base {
 	
 	private $name;
 	private $description;
@@ -1364,7 +1364,7 @@ WHERE
 
 }
 
-class Test extends Base {
+Class Test extends Base {
 	
 	/*
 	 *	Describes the "tests" that the studnts do that count towards their grade, 
