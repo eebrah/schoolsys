@@ -1,7 +1,0 @@
-english;65;72;71
-kiswahili;56;67;70
-mathematics;70;63;67
-biology;81;83;86
-chemistry;76;68;74
-physics;56;62;60
-history;87;86;81

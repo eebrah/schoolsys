@@ -2,11 +2,13 @@
 
 date_default_timezone_set( "Africa/Nairobi" );
 
+const DEFAULT_UNIQUE_ID = "00000";
+
 require_once( "DBConfig.php" );
 	
 try {
 	
-	$dbh = new PDO( 'mysql:host=localhost;dbname=' . $DBName, $DBUser, $DBPass, array( PDO::ATTR_PERSISTENT => true ) );
+	$dbh = new PDO( 'mysql:host=' . DB_HOST . ';dbname=' . DB_NAME, DB_USER, DB_PASS, array( PDO::ATTR_PERSISTENT => true ) );
 	$dbh -> setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
    
 } 
@@ -36,7 +38,7 @@ Class Base {
 
 	function genUniqueID( $length = 5, $seed = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ' ) {
 		
-		$returnValue = '00000';
+		$returnValue = DEFAULT_UNIQUE_ID;
 
 			for( $i = 0; $i < $length; $i++ ) {
 		
@@ -47,19 +49,15 @@ Class Base {
 		return $returnValue;
 			
 	}
-
-	function __construct( $uniqueID = "00000" ) {
+	
+	function __construct( $uniqueID = DEFAULT_UNIQUE_ID ) {
 		
-		if( $uniqueID == "00000" ) {
-			
-			// No unique ID was passed, this is a new record, generate a new one
+		if( $uniqueID == DEFAULT_UNIQUE_ID ) { // No uniqueID passed, this is a new record
 			
 			$this -> setUniqueID( $this -> genUniqueID() );
 		
 		}
-		else {
-			
-			// A unique ID was passed, set it
+		else { // A unique ID was passed, set it as the value
 			
 			$this -> setUniqueID( $uniqueID );
 		
@@ -68,6 +66,5 @@ Class Base {
 	}
 
 }
-
 
 ?>

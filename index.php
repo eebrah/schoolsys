@@ -2,12 +2,12 @@
 
 session_start();
 
-require_once( "Base.class.php" );
-require_once( "Person.class.php" );
-require_once( "Employee.class.php" );
-require_once( "Student.class.php" );
-require_once( "Subject.class.php" );
-require_once( "Stream.class.php" );
+require_once( "PHP.Classes/Base.class.php" );
+require_once( "PHP.Classes/Person.class.php" );
+require_once( "PHP.Classes/Employee.class.php" );
+require_once( "PHP.Classes/Student.class.php" );
+require_once( "PHP.Classes/Subject.class.php" );
+require_once( "PHP.Classes/Stream.class.php" );
 
 {	// Data
 	
@@ -18,7 +18,7 @@ require_once( "Stream.class.php" );
 	$pageTitle = 'netivity SchoolSys';
 	
 	$pageHeader = '<!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<title>' . $pageTitle . '</title>
 		<link rel="stylesheet" 
@@ -196,7 +196,8 @@ if( isset( $_SESSION[ "user" ][ "loggedIn" ] ) ) {
 								else {
 									
 									$pageBody .= '
-<div class="dialog">
+<div class="dialog error">
+	<h1>database error</h1>
 	<p>Unable to save the record</p>
 </div>';
 								
@@ -215,32 +216,34 @@ if( isset( $_SESSION[ "user" ][ "loggedIn" ] ) ) {
 		<fieldset class="info">
 			<legend>student details</legend>
 			<div class="row">
-				<label>school id</label>
+				<label for="schoolID">school id</label>
 				<input type="text"
 				       name="schoolID"
-				       placeholder="enter students admission number" />
+				       placeholder="students admission number" />
 			</div>
 			<div class="row">
-				<label>surname</label>
+				<label for="surname">surname</label>
 				<input type="text"
 				       name="surname"
-				       placeholder="enter students surname" />
+				       placeholder="enter students surname"
+				       required="required" />
 			</div>
 			<div class="row">
-				<label>other names</label>
+				<label for="otherNames">other names</label>
 				<input type="text"
 				       name="otherNames"
-				       placeholder="enter any other names" />
+				       placeholder="other names"
+				       required="required" />
 			</div>
 			<div class="row">
-				<label>gender</label>
+				<label for="gender">gender</label>
 				<select name="gender">
 					<option value="1">male</option>
 					<option value="0">female</option>
 				</select>
 			</div>
 			<div class="row">
-				<label>stream</label>
+				<label for="stream">stream</label>
 				<select name="stream">';
 								
 							$streams = getStreams();	
@@ -258,7 +261,7 @@ if( isset( $_SESSION[ "user" ][ "loggedIn" ] ) ) {
 				</select>
 			</div>
 			<div class="row">
-				<label>year of study</label>
+				<label for="yearOfStudyAtAdmission">year of study</label>
 				<select name="yearOfStudyAtAdmission">
 					<option value="1">Form 1</option>
 					<option value="2">Form 2</option>
@@ -267,13 +270,13 @@ if( isset( $_SESSION[ "user" ][ "loggedIn" ] ) ) {
 				</select>
 			</div>
 			<div class="row">
-				<label>date of birth</label>
+				<label for="KCPEScore">KCPE marks</label>
 				<input type="text"
 				       name="KCPEScore"
 				       placeholder="students KCPE Marks" />
 			</div>
 			<div class="row">
-				<label>date of registration/admission</label>
+				<label for="dateOfAdmission">date of registration/admission</label>
 				<input type="date"
 				       name="dateOfAdmission"
 				       placeholder="date on which student was registered"
