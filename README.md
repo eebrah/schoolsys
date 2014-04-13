@@ -43,5 +43,5 @@ Open source, Web based Management Information System for schools
 		| name        | VARCHAR( 80 ) |
 		| description | TEXT          |
 		+-------------+---------------+
-
+.
 </pre>
