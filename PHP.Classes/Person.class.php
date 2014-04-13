@@ -31,7 +31,7 @@ Class Person extends Base {
 	
 	}
 	
-	function saveToDB() {
+	function save() {
 		
 		GLOBAL $dbh;
 		
@@ -71,7 +71,7 @@ VALUES (
 	
 	}
 	
-	function loadFromDB() {
+	function load() {
 	
 		GLOBAL $dbh;
 		
@@ -111,7 +111,7 @@ WHERE
 			
 	}
 	
-	function updateDB() {
+	function update() {
 	
 		GLOBAL $dbh;
 		
@@ -145,7 +145,7 @@ WHERE
 	
 	}
 	
-	function __construct( $uniqueID = "00000", 
+	function __construct( $uniqueID = DEFAULT_UNIQUE_ID, 
 						  $surName = "",
 						  $otherNames = "" ) {
 		
@@ -153,7 +153,7 @@ WHERE
 		
 		if( $uniqueID != "00000" ) {
 			
-			$this -> loadFromDB();
+			$this -> load();
 		
 		}
 		else {

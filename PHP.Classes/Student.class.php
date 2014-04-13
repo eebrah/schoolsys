@@ -136,7 +136,7 @@ Class Student extends Person {
 	
 	}
 	
-	function saveToDB( $returnType = 0 ) {
+	function save( $returnType = RETURN_BOOLEAN ) {
 		
 		GLOBAL $dbh;
 		
@@ -171,7 +171,7 @@ VALUES (
 			
 			$returnValue = false;
 		
-			if( parent::saveToDB() ) {
+			if( parent::save() ) {
 			
 				try {
 							
@@ -222,7 +222,7 @@ VALUES (
 	
 	}
 	
-	function loadFromDB( $returnType = 0 ) {
+	function load( $returnType = RETURN_BOOLEAN ) {
 		
 		GLOBAL $dbh;
 		
@@ -242,7 +242,7 @@ WHERE
 		
 			$returnValue = false;
 			
-			if( parent::loadFromDB() ){
+			if( parent::load() ){
 				
 				try {			
 					
@@ -282,7 +282,7 @@ WHERE
 	
 	}
 	
-	function updateDB( $returnType = 0 ) {
+	function update( $returnType = RETURN_BOOLEAN ) {
 		
 		GLOBAL $dbh;
 		
@@ -302,7 +302,7 @@ WHERE
 		
 			$returnValue = false;
 			
-			if( parent::updateDB() ) {
+			if( parent::update() ) {
 
 				try {
 			
@@ -332,7 +332,7 @@ WHERE
 	
 	}
 	
-	function __construct( $uniqueID = "00000",
+	function __construct( $uniqueID = DEFAULT_UNIQUE_ID,
 						  $surName = "",
 						  $otherNames = "",
 						  $schoolID = "",
@@ -346,7 +346,7 @@ WHERE
 		
 		if( $uniqueID != "00000" ) {
 			
-			$this -> loadFromDB();
+			$this -> load();
 		
 		}
 		else {

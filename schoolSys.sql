@@ -22,6 +22,83 @@ SET time_zone = "+00:00";
 
 -- --------------------------------------------------------
 
+
+
+-- phpMyAdmin SQL Dump
+-- version 3.5.8.2
+-- http://www.phpmyadmin.net
+--
+-- Host: localhost
+-- Generation Time: Dec 07, 2013 at 05:33 AM
+-- Server version: 5.5.33a-MariaDB
+-- PHP Version: 5.5.6
+
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+
+--
+-- Database: `blog`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `accountDetails`
+--
+
+DROP TABLE IF EXISTS `accountDetails`;
+CREATE TABLE IF NOT EXISTS `accountDetails` (
+  `uniqueID` varchar(5) NOT NULL,
+  `screenname` varchar(80) NOT NULL,
+  `email` varchar(80) NOT NULL,
+  `password` varchar(80) NOT NULL,
+  `status` int(11) NOT NULL DEFAULT '1',
+  `accessLevel` int(11) NOT NULL DEFAULT '2',
+  PRIMARY KEY (`uniqueID`),
+  UNIQUE KEY `screenname` (`screenname`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `accountDetails`
+--
+
+INSERT INTO `accountDetails` (`uniqueID`, `screenname`, `email`, `password`, `status`, `accessLevel`) VALUES
+('G67BA', 'admin', 'admin@ibrahimngeno.me.ke', '020763de46dfb2a37001c0f129b61104', 1, 0),
+('Y6D2K', 'eebrah', 'eebrah@gmail.com', '5f4dcc3b5aa765d61d8327deb882cf99', 1, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `userDetails`
+--
+
+DROP TABLE IF EXISTS `userDetails`;
+CREATE TABLE IF NOT EXISTS `userDetails` (
+  `uniqueID` varchar(5) NOT NULL,
+  `name` varchar(80) NOT NULL,
+  `dateJoined` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`uniqueID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `userDetails`
+--
+
+INSERT INTO `userDetails` (`uniqueID`, `name`, `dateJoined`) VALUES
+('G67BA', 'Administrator', '2013-09-17 21:00:00'),
+('Y6D2K', 'Ibrahim Ngeno', '2013-09-20 14:54:44');
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+
 --
 -- Table structure for table `employeeDetails`
 --
@@ -147,28 +224,3 @@ INSERT INTO `testDetails` (`uniqueID`, `startDate`, `type`, `startYear`, `stopYe
 ('NJ2UQ', '2012-11-04 00:00:00', 1, 1, 4);
 
 -- --------------------------------------------------------
-
---
--- Table structure for table `userDetails`
---
-
-DROP TABLE IF EXISTS `userDetails`;
-CREATE TABLE IF NOT EXISTS `userDetails` (
-  `uniqueID` varchar(5) NOT NULL,
-  `screenName` varchar(80) NOT NULL,
-  `passwordHash` varchar(32) NOT NULL,
-  `status` tinyint(4) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`uniqueID`),
-  UNIQUE KEY `screenName` (`screenName`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `userDetails`
---
-
-INSERT INTO `userDetails` (`uniqueID`, `screenName`, `passwordHash`, `status`) VALUES
-('00001', 'admin', '020763de46dfb2a37001c0f129b61104', 1);
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

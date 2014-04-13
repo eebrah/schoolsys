@@ -67,7 +67,7 @@ Class Stream extends Base {
 	
 	}
 	
-	function saveToDB( $returnType = 0 ) {
+	function save( $returnType = RETURN_BOOLEAN ) {
 		
 		GLOBAL $dbh;
 		
@@ -120,7 +120,7 @@ VALUES (
 	
 	}
 	
-	function loadFromDB( $returnType = 0 ) {
+	function load( $returnType = RETURN_BOOLEAN ) {
 		
 		GLOBAL $dbh;
 		
@@ -172,7 +172,7 @@ WHERE
 	
 	}
 	
-	function updateDB( $returnType = 0 ) {
+	function update( $returnType = RETURN_BOOLEAN ) {
 		
 		GLOBAL $dbh;
 		
@@ -217,7 +217,7 @@ WHERE
 	
 	}
 	
-	function __construct( $uniqueID = "00000", 
+	function __construct( $uniqueID = DEFAULT_UNIQUE_ID, 
 	                      $name = "",
 	                      $description = "",
 	                      $startYear = 1,
@@ -225,7 +225,7 @@ WHERE
 	
 		parent::__construct( $uniqueID );
 		
-		if( $uniqueID == "00000" ) {
+		if( $uniqueID == DEFAULT_UNIQUE_ID ) {
 			
 			if( $name != "" ) {
 				
@@ -246,7 +246,7 @@ WHERE
 		}
 		else {
 			
-			$this -> loadFromDB();
+			$this -> load();
 		
 		}
 	

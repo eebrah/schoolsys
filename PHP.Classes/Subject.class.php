@@ -80,7 +80,7 @@ Class Subject extends Base {
 	
 	}
 	
-	function saveToDB( $returnType = 0 ) {
+	function save( $returnType = RETURN_BOOLEAN ) {
 		
 		GLOBAL $dbh;
 		
@@ -125,7 +125,7 @@ VALUES (
 	
 	}
 	
-	function loadFromDB( $returnType = 0 ) {
+	function load( $returnType = RETURN_BOOLEAN ) {
 		
 		GLOBAL $dbh;
 		
@@ -168,7 +168,7 @@ WHERE
 	
 	}
 	
-	function updateDB( $returnType = 0 ) {
+	function update( $returnType = RETURN_BOOLEAN ) {
 		
 		GLOBAL $dbh;
 		
@@ -214,7 +214,7 @@ WHERE
 	
 	}
 	
-	function __construct( $uniqueID = "00000",
+	function __construct( $uniqueID = DEFAULT_UNIQUE_ID,
 	                      $code = "000",
 	                      $name = "",
 	                      $description = "",
@@ -225,7 +225,7 @@ WHERE
 		
 		if( $uniqueID != "00000" ) {
 			
-			$this -> loadFromDB();
+			$this -> load();
 			
 		}
 		else {

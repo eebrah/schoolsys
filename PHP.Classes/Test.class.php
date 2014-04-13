@@ -5,11 +5,15 @@ require_once( "Base.class.php" );
 Class Test extends Base {
 	
 	/*
-	 *	Describes the "tests" that the studnts do that count towards their grade, 
+	 * Describes the tests that the students have to do that count towards their grade, 
 	 * initially includes just CATs and exams but could be expanded to unclude assignments and labs etc 
 	 * 
-	 * startYear : The earliest group that is sitting this test
+	 * startYear : The most junior group that is sitting this test
 	 * stopYear : the most senior year sitting this test
+	 * 
+	 * startDate : When it begins
+	 * type : Is it a CAT, Exam, Assignment? etc
+	 * 
 	 */
 	
 	private $startDate;
@@ -17,65 +21,76 @@ Class Test extends Base {
 	private $startYear;
 	private $stopYear;
 	
-	function setStartDate( $startDate ) {
+	function setStartDate( $startDate ) { $this -> startDate = $startDate; }
+	
+	function getStartDate() { return $this -> startDate; }
+	
+	function setType( $type ) { $this -> type = $type; }
+	
+	function getType() { return $this -> type; }
 		
-		$this -> startDate = $startDate;
+	function setStartYear( $startYear ) { $this -> startYear = $startYear; }
 	
-	}
+	function getStartYear() { return $this -> startYear; }	
 	
-	function getStartDate() {
-		
-		return $this -> startDate;
+	function setStopYear( $stopYear ) { $this -> stopYear = $stopYear; }
 	
-	}
-	
-	function setType( $type ) {
-		
-		$this -> type = $type;
-	
-	}
-	
-	function getType() {
-		
-		return $this -> type;
-	
-	}
-		
-	function setStartYear( $startYear ) {
-		
-		$this -> startYear = $startYear;
-	
-	}
-	
-	function getStartYear() {
-		
-		return $this -> startYear;
-	
-	}	
-	
-	function setStopYear( $stopYear ) {
-		
-		$this -> stopYear = $stopYear;
-	
-	}
-	
-	function getStopYear() {
-		
-		return $this -> stopYear;
-	
-	}	
+	function getStopYear() { return $this -> stopYear; }	
 	
 	function validate() {
 		
-		$returnValue = false;
+		$returnStatus = true;
+		$returnData = Array(
+			"startYear" => Array(),
+			"endYear" => Array(),
+			"startDate" => Array(),
+			"type" => Array()
+		)
 		
-		$returnValue = true;
+		if( $this -> getStartYear() < MOST_JUNIOR_CLASS ) {
+			
+			$returnStatus = false;
+			
+			array_push( $returnData[ "startYear" ], "the starting class year cannot be lower than " . MOST_JUNIOR_CLASS );
+			
+		}
+		
+		if( $this -> getStopYear() > MOST_SENIOR_CLASS ) {
+			
+			$returnStatus = false;
+			
+			array_push( $returnData[ "stopYear" ], "the senior class year cannot be larger than " . MOST_SENIOR_CLASS );
+			
+		}
+		
+		if( $this -> getStartYear() > $this -> getStopYear() ) {}
+		
+		if( $this -> getStartDate() ) {}
+		
+		switch( $returnType ) {
+			
+			case RETURN_BOOLEAN :
+			default : {
+				
+				$returnValue = $returnStatus;
+			
+			}
+			break;
+			
+			case RETURN_DATA : {
+				
+				$returnValue = $returnData;
+			
+			}
+			break;
+			
+		}
 		
 		return $returnValue;
 	
 	}
 	
-	function saveToDB( $returnType = 0 ) {
+	function save( $returnType = RETURN_BOOLEAN ) {
 		
 		GLOBAL $dbh;
 		
@@ -95,34 +110,42 @@ VALUES (
 	, "' . mysql_escape_string( $this -> getStopYear() ) . '"
 )';
 		
-		if( $returnType == 0 ) {
+		switch( $returnType ) {
 			
-			$returnValue = false;
-		
-			try {
+			case RETURN_BOOLEAN :
+			default : {
 						
-				$dbh -> beginTransaction();
+				$returnValue = false;
+			
+				try {
+							
+					$dbh -> beginTransaction();
 
-					$dbh -> exec( $query );
-			   
-				$dbh -> commit();				
+						$dbh -> exec( $query );
+				   
+					$dbh -> commit();				
+					
+					$returnValue = true;
+				   
+				} 
+				catch( PDOException $e ) {
+					
+				   print "Error!: " . $e -> getMessage() . "<br/>";			   
+				   die();
+				   
+				}
 				
 				$returnValue = true;
-			   
-			} 
-			catch( PDOException $e ) {
 				
-			   print "Error!: " . $e -> getMessage() . "<br/>";			   
-			   die();
-			   
 			}
+			break;
 			
-			$returnValue = true;
+			case RETURN_QUERY : {
 			
-		}
-		else {
-			
-			$returnValue = $query;
+				$returnValue = $query;
+		
+			}
+			break;
 		
 		}
 		
@@ -130,7 +153,7 @@ VALUES (
 	
 	}
 	
-	function loadFromDB( $returnType = 0 ) {
+	function load( $returnType = RETURN_BOOLEAN ) {
 		
 		GLOBAL $dbh;
 		
@@ -145,47 +168,55 @@ FROM
 WHERE
 	`uniqueID` = "' . mysql_escape_string( $this -> getUniqueID() ) . '"
 ';
-	
-		if( $returnType == 0 ) {
 		
-			$returnValue = false;
-				
-			try {			
-				
-				$statement = $dbh -> prepare( $query );
-				$statement -> execute();
+		switch( $returnType ) {
 			
-				$row = $statement -> fetch();
+			case RETURN_BOOLEAN :
+			default : {
+		
+				$returnValue = false;
+					
+				try {			
+					
+					$statement = $dbh -> prepare( $query );
+					$statement -> execute();
 				
-				$this -> setStartDate( $row[ "startDate" ] );
-				$this -> setType( $row[ "type" ] );
-				$this -> setStartYear( $row[ "startYear" ] );
-				$this -> setStopYear( $row[ "stopYear" ] );
-			
+					$row = $statement -> fetch();
+					
+					$this -> setStartDate( $row[ "startDate" ] );
+					$this -> setType( $row[ "type" ] );
+					$this -> setStartYear( $row[ "startYear" ] );
+					$this -> setStopYear( $row[ "stopYear" ] );
+				
+					$returnValue = true;
+				   
+				} 
+				catch( PDOException $e ) {
+					
+				   print "Error!: " . $e -> getMessage() . "<br/>";			   
+				   die();
+				   
+				}
+				
 				$returnValue = true;
-			   
-			} 
-			catch( PDOException $e ) {
-				
-			   print "Error!: " . $e -> getMessage() . "<br/>";			   
-			   die();
-			   
+		
 			}
+			break;
 			
-			$returnValue = true;
-	
-		}
-		else {
+			case RETURN_QUERY : {
+				
+				$returnType = $query;
 			
-			$returnType = $query;
-		
+			}
+			break;
+			
 		}
-		
+			
 		return $returnValue;
 	
 	}
 	
-	function updateDB( $returnType = 0 ) {
+	function update( $returnType = RETURN_BOOLEAN ) {
 		
 		GLOBAL $dbh;
 		
@@ -200,29 +231,37 @@ SET
 WHERE
 	`uniqueID` = "' . $this -> getUniqueID() . '"';
 		
-		if( $returnType == 0 ) {
-		
-			$returnValue = false;
+		switch( $returnType ) {
 			
-			try {
+			case RETURN_BOOLEAN :
+			default : {
 		
-				$statement = $dbh -> prepare( $query );
-				$statement -> execute();				
-
-				$returnValue = true;
-				   
-			} 
-			catch( PDOException $e ) {
+				$returnValue = false;
 				
-			   print "Error!: " . $e -> getMessage() . "<br/>";			   
-			   die();
-			   
+				try {
+			
+					$statement = $dbh -> prepare( $query );
+					$statement -> execute();				
+
+					$returnValue = true;
+					   
+				} 
+				catch( PDOException $e ) {
+					
+				   print "Error!: " . $e -> getMessage() . "<br/>";			   
+				   die();
+				   
+				}
+				
 			}
+			break;
 			
-		}
-		else {
+			case RETURN_QUERY : {
 			
-			$returnValue = $query;
+				$returnValue = $query;
+		
+			}
+			break;
 		
 		}
 			
@@ -230,7 +269,7 @@ WHERE
 	
 	}
 	
-	function __construct( $uniqueID = "00000",
+	function __construct( $uniqueID = DEFAULT_UNIQUE_ID,
 	                      $startDate = "",
 	                      $type = 1,
 	                      $startYear = 1,
@@ -238,7 +277,7 @@ WHERE
 							  
 		parent::__construct( $uniqueID );
 		
-		if( $uniqueID == "00000" ) {
+		if( $uniqueID == DEFAULT_UNIQUE_ID ) {
 			
 			if( $startDate != "" ) {
 				
@@ -254,7 +293,7 @@ WHERE
 		}
 		else {
 			
-			$this -> loadFromDB();
+			$this -> load();
 		
 		}
 	

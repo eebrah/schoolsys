@@ -2,8 +2,7 @@
 
 session_start();
 
-require_once( "PHP.Classes/Base.class.php" );
-require_once( "PHP.Classes/Person.class.php" );
+require_once( "PHP.Classes/User.class.php" );
 require_once( "PHP.Classes/Employee.class.php" );
 require_once( "PHP.Classes/Student.class.php" );
 require_once( "PHP.Classes/Subject.class.php" );
@@ -161,7 +160,7 @@ if( isset( $_SESSION[ "user" ][ "loggedIn" ] ) ) {
 								
 								$student = new Student( "00000", $_POST[ "surname" ], $_POST[ "otherNames" ], $_POST[ "schoolID" ], $_POST[ "KCPEScore" ], $_POST[ "dateOfAdmission" ], $_POST[ "yearOfStudyAtAdmission" ], $_POST[ "gender" ] );
 								
-								if( $student -> saveToDB() ) {
+								if( $student -> save() ) {
 								
 									$pageBody .= '
 <div class="dialog">
@@ -332,7 +331,7 @@ if( isset( $_SESSION[ "user" ][ "loggedIn" ] ) ) {
 									$student -> setYearOfStudyAtAdmission( $_POST[ "yearOfStudyAtAdmission" ] );
 									
 /*									
-									if( $student -> saveToDB() ) {
+									if( $student -> save() ) {
 */									
 										$pageBody .= '
 <div class="dialog">
@@ -802,7 +801,7 @@ if( isset( $_SESSION[ "user" ][ "loggedIn" ] ) ) {
 								
 								if( $stream -> validate() ) {
 									
-									if( $stream -> saveToDB() ) {
+									if( $stream -> save() ) {
 										
 										$pageBody .= '<div class="dialog">stream successfully saved</div>';
 									
@@ -922,7 +921,7 @@ if( isset( $_SESSION[ "user" ][ "loggedIn" ] ) ) {
 									
 									if( $stream -> validate() ) {
 										
-										if( $stream -> updateDB() ) {
+										if( $stream -> update() ) {
 											
 											$pageBody .= '
 <div class="dialog">
@@ -1093,7 +1092,7 @@ if( isset( $_SESSION[ "user" ][ "loggedIn" ] ) ) {
 								
 								if( $subject -> validate() ) {
 									
-									if( $subject -> saveToDB() ) {
+									if( $subject -> save() ) {
 								
 										$pageBody .= '
 <table>
@@ -1276,7 +1275,7 @@ if( isset( $_SESSION[ "user" ][ "loggedIn" ] ) ) {
 								
 								if( $subject -> validate() ) {
 									
-									if( $subject -> updateDB() ) {
+									if( $subject -> update() ) {
 								
 										$pageBody .= '
 <table>
@@ -1406,7 +1405,7 @@ if( isset( $_SESSION[ "user" ][ "loggedIn" ] ) ) {
 								
 								if( $test -> validate() ) {
 									
-									if( $test -> saveToDB() ) {
+									if( $test -> save() ) {
 								
 										$pageBody .= '
 <table>
@@ -1638,15 +1637,11 @@ if( isset( $_SESSION[ "user" ][ "loggedIn" ] ) ) {
 }
 else {
 	
-	// Not logged on, allow log in and registration
+	// Not logged on, allow log in
 	
 	$section = "access";
 	
-	if( isset( $_REQUEST[ "section" ] ) ) {
-		
-		$section = $_REQUEST[ "section" ];
-	
-	}
+	if( isset( $_REQUEST[ "section" ] ) ) { $section = $_REQUEST[ "section" ]; }
 	
 	switch( $section ) {
 		
@@ -1655,11 +1650,7 @@ else {
 			
 			$action = "toggle";
 			
-			if( isset( $_REQUEST[ "action" ] ) ) {
-				
-				$action = $_REQUEST[ "action" ];
-			
-			}
+			if( isset( $_REQUEST[ "action" ] ) ) { $action = $_REQUEST[ "action" ]; }
 			
 			switch( $action ) {
 								
@@ -1668,11 +1659,7 @@ else {
 					
 					$stage = "1";
 					
-					if( isset( $_REQUEST[ "stage" ] ) ) {
-						
-						$stage = $_REQUEST[ "stage" ];
-					
-					}
+					if( isset( $_REQUEST[ "stage" ] ) ) { $stage = $_REQUEST[ "stage" ]; }
 					
 					switch( $stage ) {
 						

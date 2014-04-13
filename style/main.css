@@ -33,6 +33,9 @@ table.fancy {
 
 table.fancy thead {
 	background-color: blue;
+	
+	border-top-left-radius: 0.3em;
+	border-top-right-radius: 0.3em;
 
 }
 
@@ -78,5 +81,10 @@ table.fancy ul li a {
 	font-weight: bold;
 	
 	padding: 0.5em 1em;
+
+}
+
+.dialog {
+	box-shadow: 0 0 0.5em #444444;
 
 }

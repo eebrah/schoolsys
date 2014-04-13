@@ -45,13 +45,13 @@ Class Employee extends Person {
 	
 	}
 	
-	function saveToDB() {
+	function save() {
 		
 		GLOBAL $dbh;
 		
 		$returnValue = false;
 		
-		if( parent::saveToDB() ) {
+		if( parent::save() ) {
 			
 			$query = '
 INSERT INTO `employeeDetails` (
@@ -93,13 +93,13 @@ VALUES (
 	
 	}
 	
-	function loadFromDB() {
+	function load() {
 		
 		GLOBAL $dbh;
 		
 		$returnValue = false;
 		
-		if( parent::loadFromDB() ) {
+		if( parent::load() ) {
 			
 			$query = '
 SELECT
@@ -141,13 +141,13 @@ WHERE
 	
 	}
 	
-	function updateDB() {
+	function update() {
 		
 		GLOBAL $dbh;
 		
 		$returnValue = false;
 		
-		if( parent::updateDB() ) {
+		if( parent::update() ) {
 			
 			$query = '
 UPDATE
@@ -182,7 +182,7 @@ WHERE
 	
 	}
 	
-	function __construct( $uniqueID = "00000",
+	function __construct( $uniqueID = DEFAULT_UNIQUE_ID,
 						  $surName = "",
 						  $otherNames = "",
 						  $IDNumber = "",
@@ -193,7 +193,7 @@ WHERE
 		
 		if( $uniqueID != "00000" ) {
 			
-			$this -> loadFromDB();
+			$this -> load();
 		
 		}
 		else {
