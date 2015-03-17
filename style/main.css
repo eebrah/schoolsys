@@ -55,6 +55,9 @@ table.pretty tbody tr:nth-of-type( 2n ) {
 
 table.fancy {
 	border-collapse: collapse;
+	
+	margin: 1em;
+	padding: 1em;
 
 }
 

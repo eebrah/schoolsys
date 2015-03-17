@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<title>Sapient Systems : SchoolSys</title>
+		<link rel="stylesheet" type="text/css" href="style/dropdown.css" /> 
+		<link rel="stylesheet" type="text/css" href="style/main.css" /> 
+		<link rel="stylesheet" type="text/css" media="only screen and (max-device-width: 480px)" href="style/mobile.css" />
+	</head>
+	<body>
+		<div id="wrapper">
+			<div class="header">
+				<ul id="nav_global">
+					<li>
+						<a href="http://localhost/eebrah/schoolsys/?section=students">students</a>
+						<ul>
+							<li>
+								<a href="http://localhost/eebrah/schoolsys/?section=students&amp;action=add">add student</a>
+							</li>
+							<li>
+								<a href="http://localhost/eebrah/schoolsys/?section=students&amp;action=list">list students</a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a href="http://localhost/eebrah/schoolsys/?section=subjects">subjects</a>
+						<ul>
+							<li>
+								<a href="http://localhost/eebrah/schoolsys/?section=subjects&amp;action=add">add subject</a>
+							</li>
+							<li>
+								<a href="http://localhost/eebrah/schoolsys/?section=subjects&amp;action=list">list subjects</a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a href="http://localhost/eebrah/schoolsys/?section=streams">streams</a>
+						<ul>
+							<li>
+								<a href="http://localhost/eebrah/schoolsys/?section=streams&amp;action=add">add stream</a>
+							</li>
+							<li>
+								<a href="http://localhost/eebrah/schoolsys/?section=streams&amp;action=list">list stream</a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a href="http://localhost/eebrah/schoolsys/?section=tests">tests</a>
+						<ul>
+							<li>
+								<a href="http://localhost/eebrah/schoolsys/?section=tests&amp;action=add">add test</a>
+							</li>
+							<li>
+								<a href="http://localhost/eebrah/schoolsys/?section=tests&amp;action=list">list tests</a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a href="http://localhost/eebrah/schoolsys/?section=access">admin</a>
+						<ul>
+							<li>
+								<a href="http://localhost/eebrah/schoolsys/?section=access&amp;action=toggle">log out</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+			<div class="body">
+				<div class="dialog">
+					<form action="?section=students&amp;action=add" method="POST">
+						<fieldset class="info">
+							<legend>student details</legend>
+							<div class="row">
+								<label for="schoolID">school id</label>
+								<input name="schoolID" placeholder="students admission number" type="text" />
+							</div>
+							<div class="row">
+								<label for="surname">surname</label>
+								<input name="surname" placeholder="enter students surname" required="required" type="text" />
+							</div>
+							<div class="row">
+								<label for="otherNames">other names</label>
+								<input name="otherNames" placeholder="other names" required="required" type="text" />
+							</div>
+							<div class="row">
+								<label for="gender">gender</label>
+								<select name="gender">
+									<option selected="selected" value="1">male</option>
+									<option value="0">female</option>
+								</select>
+							</div>
+							<div class="row">
+								<label for="stream">stream</label>
+								<select name="stream">			
+									<option selected="selected" value="UQZ4F">North</option>			
+									<option value="NX8ZU">South</option>
+								</select>
+							</div>
+							<div class="row">
+								<label for="yearOfStudyAtAdmission">year of study</label>
+								<select name="yearOfStudyAtAdmission">
+									<option selected="selected" value="1">Form 1</option>
+									<option value="2">Form 2</option>
+									<option value="3">Form 3</option>
+									<option value="4">Form 4</option>
+								</select>
+							</div>
+							<div class="row">
+								<label for="entryScore">KCPE marks</label>
+								<input name="entryScore" placeholder="students KCPE Marks" type="text" />
+							</div>
+							<div class="row">
+								<label for="dateOfAdmission">date of registration/admission</label>
+								<input name="dateOfAdmission" placeholder="date on which student was registered" value="2015-03-17" type="date" />
+							</div>
+						</fieldset>
+						<fieldset class="buttons">
+							<button type="reset">reset</button>
+							<button type="submit" name="stage" value="final">submit</button>
+						</fieldset>
+					</form>
+				</div>
+			
+				<table class="fancy sortable searchable">
+					<thead>
+						<tr>
+							<th>#</th>
+							<th>school ID</th>
+							<th>form</th>
+							<th>name</th>
+							<th>actions</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>1</td>
+							<td>1234</td>
+							<td>4</td>
+							<td>Onyango, Dennis Mungai</td>
+							<td class="actions">
+								<ul>
+									<li>
+										<a href="?section=students&amp;action=view&amp;target=94OX4">view</a>
+									</li>
+									<li>
+										<a href="?section=students&amp;action=edit&amp;target=94OX4">edit</a>
+									</li> <!--
+									<li>
+										<a href="?section=students&amp;action=delete&amp;target=94OX4">delete</a>
+									</li> -->
+								</ul>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<div class="dialog">
+					<form action="?section=subjects&amp;action=add"
+						  method="POST">
+						<fieldset class="info">
+							<legend>subject details</legend>
+							<div class="row">
+								<label>code</label>
+								<input type="text"
+									   name="code"
+									   placeholder="KNEC subject code"
+									   required="required" />
+							</div>
+							<div class="row">
+								<label>name</label>
+								<input type="text"
+									   name="name"
+									   placeholder="What is the subject called"
+									   required="required" />
+							</div>
+							<div class="row">
+								<label>description</label>
+								<textarea name="description"
+										  placeholder="any further information"></textarea>
+							</div>
+							<div class="row">
+								<label>start year</label>
+								<select name="startYear">
+									<option value="1" selected="selected">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4">4</option>
+								</select>
+							</div>
+							<div class="row">
+								<label>end year</label>
+								<select name="stopYear">
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4" selected="selected">4</option>
+								</select>
+							</div>
+						</fieldset>
+						<fieldset class="buttons">
+							<button type="reset">reset</button>
+							<button type="submit"
+									name="stage"
+									value="2">submit</button>
+						</fieldset>
+					</form>
+				</div>
+				<table class="fancy">
+					<thead>
+						<tr>
+							<th>#</th>
+							<th>code</th>
+							<th>name</th>
+							<th>start class</th>
+							<th>end class</th>
+							<th>actions</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>1</td>
+							<td>101</td>
+							<td>English</td>
+							<td>Form1</td>
+							<td>Form4</td>
+							<td>
+								<ul>
+									<li>
+										<a href="?section=subjects&amp;action=view&amp;target=R9WUV">view</a>
+									</li>
+									<li>
+										<a href="?section=subjects&amp;action=edit&amp;target=R9WUV">edit</a>
+									</li>
+								</ul>
+							</td>
+						</tr>
+					</tbody>
+				</table>				
+			</div>
+		</div>
+	</body>
+</html>
