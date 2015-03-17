@@ -4,58 +4,22 @@ require_once( "Base.class.php" );
 
 Class Stream extends Base {
 	
-	private $name;
-	private $description;
-	private $startYear;
-	private $stopYear;
+	private $name;				// The name of the stream
+	private $description;		// Describe it
+	private $startYear;			// What year does it start, default is lowest year
+	private $stopYear;			// What year does it end, default is highest year
 	
-	function setName( $name ) {
+	function setName( $name ) { $this -> name = $name; }
+	function getName() { return $this -> name; }
+	
+	function setDescription( $description ) { $this -> description = $description; }
+	function getDescription() { return $this -> description; }
 		
-		$this -> name = $name;
+	function setStartYear( $startYear ) { $this -> startYear = $startYear; }
+	function getStartYear() { return $this -> startYear; }
 	
-	}
-	
-	function getName() {
-		
-		return $this -> name;
-	
-	}
-	
-	function setDescription( $description ) {
-		
-		$this -> description = $description;
-	
-	}
-	
-	function getDescription() {
-		
-		return $this -> description;
-	
-	}
-		
-	function setStartYear( $startYear ) {
-		
-		$this -> startYear = $startYear;
-	
-	}
-	
-	function getStartYear() {
-		
-		return $this -> startYear;
-	
-	}	
-	
-	function setStopYear( $stopYear ) {
-		
-		$this -> stopYear = $stopYear;
-	
-	}
-	
-	function getStopYear() {
-		
-		return $this -> stopYear;
-	
-	}		
+	function setStopYear( $stopYear ) { $this -> stopYear = $stopYear; }
+	function getStopYear() { return $this -> stopYear; }		
 		
 	function validate() {
 		
@@ -254,6 +218,13 @@ WHERE
 
 }
 
+/**
+ * Array getStreams( $filter ) 
+ * 
+ * Fetches the available streams as an array, the filter can be used to determin which streams to return
+ * 
+ */
+ 
 function getStreams( $filter = "all" ) {
 	
 	GLOBAL $dbh;

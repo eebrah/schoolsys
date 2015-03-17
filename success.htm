@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta name="viewport" content="width=device-width" />
+		<title>Sapient Systems : SchoolSys</title>
+		<link rel="stylesheet" 
+		      type="text/css" 
+		      href="style/dropdown.css" /> 
+		<link rel="stylesheet" 
+		      type="text/css" 
+		      href="style/main.css" /> 
+		<link rel="stylesheet" 
+			  type="text/css" 
+			  media="only screen and (max-device-width: 480px)" 
+			  href="style/mobile.css" />
+	</head>
+	<body>
+		<div id="wrapper">
+			<div class="header">
+				<ul id="nav_global">
+					<li>
+						<a href="?section=students">students</a>
+						<ul>
+							<li>
+								<a href="?section=students&action=add">add student</a>
+							</li>
+							<li>
+								<a href="?section=students&action=list">list students</a>
+							</li>
+						</ul>
+					</li> <!--
+					<li>
+						<a href="?section=users">users</a>
+						<ul>
+							<li>
+								<a href="?section=users&action=list">list</a>
+							</li>
+							<li>
+								<a href="?section=users&action=add">add</a>
+							</li>
+						</ul>
+					</li> -->
+					<li>
+						<a href="?section=subjects">subjects</a>
+						<ul>
+							<li>
+								<a href="?section=subjects&action=add">add subject</a>
+							</li>
+							<li>
+								<a href="?section=subjects&action=list">list subjects</a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a href="?section=streams">streams</a>
+						<ul>
+							<li>
+								<a href="?section=streams&action=add">add stream</a>
+							</li>
+							<li>
+								<a href="?section=streams&action=list">list stream</a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a href="?section=tests">tests</a>
+						<ul>
+							<li>
+								<a href="?section=tests&action=add">add test</a>
+							</li>
+							<li>
+								<a href="?section=tests&action=list">list tests</a>
+							</li>
+<!--							<li>
+								<a href="?section=tests&action=entry">enter marks</a>
+								<ul>
+									<li>
+										<a href="?section=tests&action=entry&mode=bulk">in bulk</a>
+									</li>
+									<li>
+										<a href="?section=tests&action=entry&mode=individual">per student</a>
+									</li>
+								</ul>
+							</li>
+-->						</ul>
+					</li>
+					<li>
+						<a href="?section=access">admin</a>
+						<ul>
+							<li>
+								<a href="?section=access&action=toggle">log out</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+			<div class="body">
+<div class="dialog success">
+	<p>The following student : </p>
+	<table class="pretty">
+		<tbody>
+			<tr>
+				<th>school ID</th>
+				<td>5692</td>
+			</tr>
+			<tr>
+				<th>name</th>
+				<td>Mugo, Alex Kamau</td>
+			</tr>
+			<tr>
+				<th>KCPE Marks</th>
+				<td>412</td>
+			</tr>
+			<tr>
+				<th>Admitted on</th>
+				<td>2014-12-26</td>
+			</tr>
+		</tbody>
+	</table>
+	<p>Was successfully added to the system</p>
+	<p>
+		<a href="?section=students&action=add"
+		   class="button">add more</a>
+		<a href="?section=students&action=list"
+		   class="button">view list</a>
+		   <a href="?"
+		      class="button">home</a> </p>
+	</p>
+</div>
+			</div>
+		</div>
+	</body>
+</html>

@@ -6,11 +6,11 @@
 #nav_global a {
 	text-decoration: none;
 	
-	padding: 0.5em 1.5em;
-	background-color: blue;
+	padding: 0.5em 1em;
+	background-color: navy;
 	color: white;
 	
-	font-weight: bold;
+	font-weight: normal;
 
 }
 
@@ -43,7 +43,7 @@
 }
 
 #nav_global li:hover ul li ul {
-	margin: -1.5em 0 0 10em;
+	margin: -1em 0 0 10em;
 
 }
 
@@ -56,23 +56,21 @@
 #nav_global li:hover ul, #nav_global li ul li:hover ul {
 	left: auto;
 	
-	width: 10em;
-	background-color: blue;
+	min-width: 10em;
+	background-color: navy;
 
 }
 
 #nav_global li:last-child ul {
-	right: -2em;
-
-}
-
-#nav_global li ul li:hover ul {
-	left: auto;
+	right: 0;
 	
+	text-align: right;
+
 }
 
 #nav_global li ul li:hover ul {
-	left: auto;
+	left: 0;
+	text-align: left;
 	
 }
 

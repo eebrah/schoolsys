@@ -1,0 +1,30 @@
+
+div.body {
+	clear: both;
+	
+	padding: 1em;
+
+}
+
+.dialog {
+	box-shadow: none;
+	border: 1px solid #999999;
+	
+}
+
+table.fancy ul li {
+	display: block;
+	
+	margin: 1em 0;
+
+}
+
+fieldset.buttons button {
+	width: calc( 100% - 3em );
+	
+	margin: 0.5em 0 0.5em 1.5em;
+	padding: 1em 1.5em;
+	
+	font-size: 1em;
+
+}

@@ -10,71 +10,26 @@ Class Subject extends Base {
 	private $startYear;
 	private $stopYear;
 	
-	function setCode( $code ) {
+	function setCode( $code ) { $this -> code = $code; }
+	function getCode() { return $this -> code; }
+	
+	function setName( $name ) { $this -> name = $name; }
+	function getName() { return $this -> name; }
+	
+	function setDescription( $description ) { $this -> description = $description; }
+	function getDescription() {	return $this -> description; }
 		
-		$this -> code = $code;
+	function setStartYear( $startYear ) { $this -> startYear = $startYear; }
+	function getStartYear() { return $this -> startYear; }	
 	
-	}
-	
-	function getCode() {
-		
-		return $this -> code;
-	
-	}
-	
-	function setName( $name ) {
-		
-		$this -> name = $name;
-	
-	}
-	
-	function getName() {
-		
-		return $this -> name;
-	
-	}
-	
-	function setDescription( $description ) {
-		
-		$this -> description = $description;
-	
-	}
-	
-	function getDescription() {
-		
-		return $this -> description;
-	
-	}
-		
-	function setStartYear( $startYear ) {
-		
-		$this -> startYear = $startYear;
-	
-	}
-	
-	function getStartYear() {
-		
-		return $this -> startYear;
-	
-	}	
-	
-	function setStopYear( $stopYear ) {
-		
-		$this -> stopYear = $stopYear;
-	
-	}
-	
-	function getStopYear() {
-		
-		return $this -> stopYear;
-	
-	}		
+	function setStopYear( $stopYear ) { $this -> stopYear = $stopYear; }
+	function getStopYear() { return $this -> stopYear; }		
 	
 	function validate() {
 		
-		$returnValue = false;
+		$returnValue = false;	// Default value
 		
-		$returnValue = true;
+		$returnValue = true; 	
 		
 		return $returnValue;
 	
@@ -104,7 +59,7 @@ VALUES (
 		
 		try {
 					
-			$dbh -> beginTransaction();
+			$dbh -> beginTransacstion();
 
 				$dbh -> exec( $query );
 		   

@@ -20,9 +20,36 @@ div.body {
 }
 
 div.header {
-	background-color: blue;
+	background-color: navy;
 	
 	min-height: 2.2em;
+
+}
+
+table.pretty {
+	border-collapse: collapse;
+
+}
+
+table.pretty tbody th {
+	text-align: right;
+
+}
+
+table.pretty tbody tr td, table.pretty tbody th {
+	padding: 0.4em 1em;
+	
+	border-top: 1px solid #999999;
+
+}
+
+table.pretty tbody tr:last-of-type {
+	border-bottom: 1px solid #999999;
+
+}
+
+table.pretty tbody tr:nth-of-type( 2n ) {
+	background-color: #E5E5FF;
 
 }
 
@@ -31,26 +58,35 @@ table.fancy {
 
 }
 
+table.fancy thead, table.fancy tfoot {
+	background-color: navy;
+	color: white;
+
+}
+
 table.fancy thead {
-	background-color: blue;
-	
 	border-top-left-radius: 0.3em;
 	border-top-right-radius: 0.3em;
 
 }
 
 table.fancy thead th {
-	color: white;
-	
+	/*
 	text-transform: uppercase;
-
+*/
 	padding: 0.5em 1em;
+	font-weight: normal;
 }
 
 table.fancy tbody {}
 
+table.fancy tbody tr:nth-of-type( 2n ) {
+	background-color: #E5E5FF;
+
+}
+
 table.fancy tbody tr:hover {
-	background-color: orange;
+	background-color: #FFCE75;
 
 }
 
@@ -72,19 +108,113 @@ table.fancy ul li {
 table.fancy ul li a {
 	text-decoration: none;
 	
-	background-color: blue;
+	background-color: navy;
 	color: white;
-	
+	/*
 	text-transform: uppercase;
+	*/
+	font-size: 1em;
+	font-weight: normal;
 	
-	font-size: 0.8em;
-	font-weight: bold;
+	padding: 0.2em 1em;
 	
-	padding: 0.5em 1em;
+	border-radius: 0.2em;
 
 }
 
 .dialog {
-	box-shadow: 0 0 0.5em #444444;
+	box-shadow: 0 0 0.5em #999999;
+	border-radius: 0.3em;
+	
+	padding-bottom: 0.5em;
+
+}
+
+fieldset {
+	border: none;
+
+}
+
+fieldset.info legend, .legend, div.dialog p:first-of-type {
+	width: 96%;
+	
+	padding: 0.5em 2%;
+	margin: 0;
+	
+	color: white;
+	background-color: navy;
+	
+	font-weight: bold;
+	
+	border-top-left-radius: 0.3em;
+	border-top-right-radius: 0.3em;
+
+}
+
+fieldset.info div.row {
+	padding: 1em 1em 0.5em;
+
+}
+
+fieldset.info div.row:nth-of-type( 2n ) {
+	background-color: #E5E5FF;
+
+}
+
+fieldset.info label {
+	display: block;
+	
+	margin-bottom: 0.5em;
+
+}
+
+fieldset.info textarea, fieldset.info input {
+	width: calc( 100% - 2em );
+	
+	border: 1px solid #999999;
+	
+	padding: 0.3em 1em 0.4em;
+	border-radius: 0.2em;
+
+}
+
+
+fieldset.buttons {
+	padding: 1em 0;
+
+}
+
+fieldset.buttons button, a.button {
+	padding: 0.3em 1.5em 0.4em;
+	margin: 0 1em;
+	
+	background-color: navy;
+	color: white;
+	
+	border: none;
+	border-radius: 0.2em;
+	
+	font-size: 1em;
+	
+	text-decoration: none;
+	text-transform: lowercase;
+
+}
+
+fieldset.buttons button {
+	margin: 0.5em 1em;
+
+}
+
+.dialog p {
+	margin: 1em;
+	
+}
+
+span.message {
+	display: block;
+	padding: 0.5em 0.5em 0;
+	
+	font-size: 0.8em;
 
 }

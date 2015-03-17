@@ -10,19 +10,15 @@ Class Token extends Base {
 	private $timeStamp;
 
 	function setAccount( $accountID ) { $this -> account = $accountID; }
-
 	function getAccount() { return $this -> account; }
 
 	function setType( $type ) { $this -> type = $type; }
-
 	function getType() { return $this -> type; }
 
 	function setStatus( $status ) { $this -> status = $status; }
-
 	function getStatus() { return $this -> status; }
 
 	function setTimeStamp( $timestamp ) { $this -> timeStamp = $timestamp; }
-
 	function getTimeStamp() { return $this -> timeStamp; }
 
 	function saveToDB( $returnType = 0 ) {

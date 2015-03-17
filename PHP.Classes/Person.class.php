@@ -7,29 +7,12 @@ Class Person extends Base {
 	private $surName;
 	private $otherNames;
 	
-	function setSurName( $surName ) {
-		
-		$this -> surName = $surName;
+	function setSurName( $surName ) { $this -> surName = $surName; }
+	function getSurName() { return $this -> surName; }
 	
-	}
-	
-	function getSurName() {
-		
-		return $this -> surName;
-	
-	}
-	
-	function setOtherNames( $otherNames ) {
-		
-		$this -> otherNames = $otherNames;
-	
-	}
-	
-	function getOtherNames() {
-		
-		return $this -> otherNames;
-	
-	}
+	function setOtherNames( $otherNames ) { $this -> otherNames = $otherNames; }
+	function getOtherNames() { return $this -> otherNames; }
+	function getName() { return $this -> getOtherNames() . ' ' . $this -> getSurName(); }
 	
 	function save() {
 		
@@ -151,21 +134,18 @@ WHERE
 		
 		parent::__construct( $uniqueID );
 		
-		if( $uniqueID != "00000" ) {
-			
+		if( $uniqueID != "00000" ) {			// If the uniqueID is set, populate Object data from data store
 			$this -> load();
 		
 		}
 		else {
 			
-			if( $surName != "" ) {
-				
+			if( $surName != "" ) {				// If the value is unset, set it
 				$this -> setSurName( $surName );
 			
 			}
 			
 			if( $otherNames != "" ) {
-				
 				$this -> setOtherNames( $otherNames );
 			
 			}

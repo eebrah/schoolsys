@@ -5,32 +5,13 @@ require_once( "Account.class.php" );
 Class User extends Account {
 
 	private $name;
-
 	private $dateJoined;
 
-	function setName( $name ) {
+	function setName( $name ) { $this -> name = $name; }
+	function getName() { return $this -> name; }
 
-		$this -> name = $name;
-
-	}
-
-	function getName() {
-
-		return $this -> name;
-
-	}
-
-	function setDateJoined( $dateJoined ) {
-
-		$this -> dateJoined = $dateJoined;
-
-	}
-
-	function getDateJoined() {
-
-		return $this -> dateJoined;
-
-	}
+	function setDateJoined( $dateJoined ) { $this -> dateJoined = $dateJoined; }
+	function getDateJoined() { return $this -> dateJoined; }
 
 	function save( $returnType = RETURN_BOOLEAN ) {
 
@@ -212,14 +193,12 @@ WHERE
 		if( $uniqueID == DEFAULT_UNIQUE_ID ) {
 
 			if( $name != "" ) {
-
 				$this -> setName( $name );
 
 			}
 
 		}
 		else {
-
 			$this -> load();
 
 		}
@@ -288,21 +267,18 @@ WHERE';
 			$returnValue = Array();
 
 			try {
-
 				$statement = $dbh -> prepare( $query );
 				$statement -> execute();
 
 				$results = $statement -> fetchAll();
 
 				foreach( $results as $result ) {
-
 					array_push( $returnValue, $result[ "uniqueID" ] );
 
 				}
 
 			}
 			catch( PDOException $e ) {
-
 			   print "Error!: " . $e -> getMessage() . "<br/>";
 			   die();
 
@@ -345,21 +321,18 @@ WHERE
 			$returnValue = true;
 
 			try {
-
 				$statement = $dbh -> prepare( $query );
 				$statement -> execute();
 
 				$results = $statement -> fetchAll();
 
 				if( count( $results ) > 0 ) {
-
 					$returnValue = true;
 
 				}
 
 			}
 			catch( PDOException $e ) {
-
 			   print "Error!: " . $e -> getMessage() . "<br/>";
 			   die();
 

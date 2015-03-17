@@ -2,39 +2,35 @@
 
 require_once( "Base.class.php" );
 
+/**
+  * 
+  * Describes the tests that the students have to do that count towards their grade, initially includes just CATs and exams but could be expanded to unclude assignments and labs etc 
+  * 
+  * startYear : The most junior group that is sitting this test
+  * stopYear : the most senior year sitting this test
+  * 
+  * startDate : When it begins
+  * type : Is it a CAT, Exam, Assignment? etc
+  * 
+  */
+
 Class Test extends Base {
-	
-	/*
-	 * Describes the tests that the students have to do that count towards their grade, 
-	 * initially includes just CATs and exams but could be expanded to unclude assignments and labs etc 
-	 * 
-	 * startYear : The most junior group that is sitting this test
-	 * stopYear : the most senior year sitting this test
-	 * 
-	 * startDate : When it begins
-	 * type : Is it a CAT, Exam, Assignment? etc
-	 * 
-	 */
 	
 	private $startDate;
 	private $type;
 	private $startYear;
 	private $stopYear;
 	
-	function setStartDate( $startDate ) { $this -> startDate = $startDate; }
-	
+	function setStartDate( $startDate ) { $this -> startDate = $startDate; }	
 	function getStartDate() { return $this -> startDate; }
 	
 	function setType( $type ) { $this -> type = $type; }
-	
 	function getType() { return $this -> type; }
 		
 	function setStartYear( $startYear ) { $this -> startYear = $startYear; }
-	
 	function getStartYear() { return $this -> startYear; }	
 	
 	function setStopYear( $stopYear ) { $this -> stopYear = $stopYear; }
-	
 	function getStopYear() { return $this -> stopYear; }	
 	
 	function validate() {
@@ -45,7 +41,7 @@ Class Test extends Base {
 			"endYear" => Array(),
 			"startDate" => Array(),
 			"type" => Array()
-		)
+		);
 		
 		if( $this -> getStartYear() < MOST_JUNIOR_CLASS ) {
 			
@@ -63,9 +59,13 @@ Class Test extends Base {
 			
 		}
 		
-		if( $this -> getStartYear() > $this -> getStopYear() ) {}
+		if( $this -> getStartYear() > $this -> getStopYear() ) {
 		
-		if( $this -> getStartDate() ) {}
+			$returnStatus = false;
+			
+			array_push( $returnData[ "startYear" ], "the starting class year cannot be larger than the end class" );
+			
+		}
 		
 		switch( $returnType ) {
 			

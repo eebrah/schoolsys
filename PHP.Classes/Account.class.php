@@ -13,23 +13,18 @@ Class Account extends Base {
 	private $status = false;
 
 	function setScreenName( $screenName ) { $this -> screenName = $screenName; }
-
 	function getScreenName() { return $this -> screenName; }
 
 	function setEmail( $email ) { $this -> email = $email; }
-
 	function getEmail() { return $this -> email; }
 
 	function setPassword( $password ) { $this -> password = $password; }
-
 	function getPassword() { return $this -> password; }
 
 	function setStatus( $status ) { $this -> status = $status; }
-
 	function getStatus() { return $this -> status; }
 
 	function setAccessLevel( $accessLevel ) { $this -> accessLevel = $accessLevel; }
-
 	function getAccessLevel() { return $this -> accessLevel; }
 
 	function save( $returnType = RETURN_BOOLEAN ) {
@@ -220,19 +215,16 @@ WHERE
 		if( $uniqueID == DEFAULT_UNIQUE_ID ) {
 
 			if( $screenName != "" ) {
-
 				$this -> setScreenName( $screenName );
 
 			}
 
 			if( $password != "" ) {
-
 				$this -> setPassword( $password );
 
 			}
 
 			if( $email != "" ) {
-
 				$this -> setEmail( $email );
 
 			}

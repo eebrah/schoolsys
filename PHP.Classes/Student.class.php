@@ -5,136 +5,45 @@ require_once( "Person.class.php" );
 Class Student extends Person {
 	
 	private $schoolID;
-//	private $dateOfBirth;
-	private $KCPEScore;
+	private $dateOfBirth;
+	private $entryScore;
 	private $dateOfAdmission;
 	private $yearOfStudyAtAdmission;
 	private $gender;
 	
 	private $stream;
 	
-	private $subjects = Array();
+	private $subjects = Array( "101", "102" );
 	private $holdBacks = Array();
 	
-	function setSchoolID( $schoolID ) {
-		
-		$this -> schoolID = $schoolID;
-	
-	}
-	
-	function getSchoolID() {
-		
-		return $this -> schoolID;
-	
-	}
+	function setSchoolID( $schoolID ) { $this -> schoolID = $schoolID; }
+	function getSchoolID() { return $this -> schoolID; }
 
-	function addSubject( $subjectCode ) {
-		
-		array_push( $this -> subjects, $subjectCode );
+	function addSubject( $subjectCode ) { array_push( $this -> subjects, $subjectCode ); }
+	function getSubjects() { return $this -> subjects; }
 	
-	}
-	
-	function getSubjects() {
-		
-		return $this -> subjects;
-	
-	}
+	function setDateOfBirth( $dateOfBirth ) { $this -> dateOfBirth = $dateOfBirth; }
+	function getDateOfBirth() { return $this -> dateOfBirth; }	
 
-/*	
-	function setDateOfBirth( $dateOfBirth ) {
-		
-		$this -> dateOfBirth = $dateOfBirth;
-	
-	}
-	
-	function getDateOfBirth() {
-		
-		return $this -> dateOfBirth;
-	
-	}
-*/	
+	function setEntryScore( $entryScore ) { $this -> EntryScore = $entryScore; }
+	function getEntryScore() { return $this -> EntryScore; }
 
-	function setKCPEScore( $KCPEScore ) {
-		
-		$this -> KCPEScore = $KCPEScore;
+	function setDateOfAdmission( $dateOfAdmission ) { $this -> dateOfAdmission = $dateOfAdmission; }
+	function getDateOfAdmission() { return $this -> dateOfAdmission; }
 	
-	}
+	function setYearOfStudyAtAdmission( $yearOfStudyAtAdmission ) { $this -> yearOfStudyAtAdmission = $yearOfStudyAtAdmission; }
+	function getYearOfStudyAtAdmission() { return $this -> yearOfStudyAtAdmission; }
 	
-	function getKCPEScore() {
-		
-		return $this -> KCPEScore;
+	function addHoldBack( $holdBackID ) { array_push( $this -> holdBacks, $holdBackID ); }
+	function getHoldBacks() { return $this -> holdBacks; }
 	
-	}
-
-	function setDateOfAdmission( $dateOfAdmission ) {
-		
-		$this -> dateOfAdmission = $dateOfAdmission;
+	function getYearOfStudy() { return ( date( "Y" ) - date( "Y", strtotime( $this -> getDateOfAdmission() ) ) + 1 ); }
 	
-	}
+	function setGender( $gender ) { $this -> gender = $gender; }
+	function getGender() { return $this -> gender; }
 	
-	function getDateOfAdmission() {
-		
-		return $this -> dateOfAdmission;
-	
-	}
-	
-	function setYearOfStudyAtAdmission( $yearOfStudyAtAdmission ) {
-		
-		$this -> yearOfStudyAtAdmission = $yearOfStudyAtAdmission;
-	
-	}
-	
-	function getYearOfStudyAtAdmission() {
-		
-		return $this -> yearOfStudyAtAdmission;
-	
-	}
-	
-	function addHoldBack( $holdBackID ) {
-		
-		array_push( $this -> holdBacks, $holdBackID );
-	
-	}
-	
-	function getHoldBacks() {
-		
-		return $this -> holdBacks;
-		
-	}
-	
-	function getYearOfStudy() {
-		
-		$returnValue = $this -> getYearOfStudyAtAdmission();
-		
-		$returnValue = ( date( "Y" ) - date( "Y", strtotime( $this -> getDateOfAdmission() ) ) + 1 );
-		
-		return $returnValue;
-	
-	}
-	
-	function setGender( $gender ) {
-		
-		$this -> gender = $gender;
-	
-	}
-	
-	function getGender() {
-		
-		return $this -> gender;
-	
-	}
-	
-	function setStream( $stream ) {
-		
-		$this -> stream = $stream;
-	
-	}
-	
-	function getStream() {
-		
-		return $this -> stream;
-	
-	}
+	function setStream( $stream ) { $this -> stream = $stream; }
+	function getStream() { return $this -> stream; }
 	
 	function save( $returnType = RETURN_BOOLEAN ) {
 		
@@ -163,7 +72,7 @@ INSERT INTO `studentSubjects` (
 )
 VALUES (
 	  "' . $this -> getUniqueID() . '"
-	  ?
+	, ?
 )
 ';
 		
@@ -188,7 +97,6 @@ VALUES (
 								$sth = $dbh -> prepare( $query2 );
 								
 								$sth -> bindParam( 1, $subject, PDO::PARAM_STR );
-
 								$sth -> execute();
 							
 							}
@@ -231,12 +139,21 @@ SELECT
 	  `schoolID`
 	, `dateOfAdmission`
 	, `yearOfStudyAtAdmission`
-	, `gender` 
+	, `gender`
+	, `entryScore`  
 FROM
 	`studentDetails`
 WHERE
 	`uniqueID` = "' . mysql_escape_string( $this -> getUniqueID() ) . '"
 ';
+
+		$query_subjects = '
+SELECT
+	`subjectCode`
+FROM
+	`studentSubjects`
+WHERE
+	`studentID` = "' . $this -> getUniqueID() . '"';
 	
 		if( $returnType == 0 ) {
 		
@@ -255,7 +172,7 @@ WHERE
 					$this -> setDateOfAdmission( $row[ "dateOfAdmission" ] );
 					$this -> setYearOfStudyAtAdmission( $row[ "yearOfStudyAtAdmission" ] );
 					$this -> setGender( $row[ "gender" ] );
-				//	$this -> setKCPEScore( $row[ "KCPEScore" ] );
+					$this -> setEntryScore( $row[ "entryScore" ] );
 				
 					$returnValue = true;
 				   
@@ -290,11 +207,11 @@ WHERE
 UPDATE
 	`studentDetails`
 SET
-	, `schoolID` = "' . mysql_escape_string( $this -> getSchoolID() ) . '"
+	  `schoolID` = "' . mysql_escape_string( $this -> getSchoolID() ) . '"
 	, `dateOfAdmission` = "' . mysql_escape_string( $this -> getDateOfAdmission() ) . '"
 	, `yearOfStudyAtAdmission` = "' . mysql_escape_string( $this -> getYearOfStudyAtAdmission() ) . '"
 	, `gender` = "' . mysql_escape_string( $this -> getGender() ) . '"
-	, `KCPEScore` = "' . mysql_escape_string( $this -> getKCPEScore() ) . '"
+	, `EntryScore` = "' . mysql_escape_string( $this -> getEntryScore() ) . '"
 WHERE
 	`uniqueID` = "' . $this -> getUniqueID() . '"';
 		
@@ -336,7 +253,7 @@ WHERE
 						  $surName = "",
 						  $otherNames = "",
 						  $schoolID = "",
-						  $KCPEScore = 0,
+						  $entryScore = 0,
 						  $dateOfAdmission = "",
 						  $yearOfStudyAtAdmission = 0,
 						  $gender = 0,
@@ -351,32 +268,12 @@ WHERE
 		}
 		else {
 			
-			if( $schoolID != "" ) {
-				
-				$this -> setSchoolID( $schoolID );
+			if( $schoolID != "" ) { $this -> setSchoolID( $schoolID ); }
+			if( $stream != "" ) { $this -> setStream( $stream ); }
+			if( $dateOfAdmission != "" ) { $this -> setDateOfAdmission( $dateOfAdmission ); }
+			if( $yearOfStudyAtAdmission != 0 ) { $this -> setYearOfStudyAtAdmission( $yearOfStudyAtAdmission ); }
 			
-			}
-			
-			if( $stream != "" ) {
-				
-				$this -> setStream( $stream );
-			
-			}
-			
-			if( $dateOfAdmission != "" ) {
-				
-				$this -> setDateOfAdmission( $dateOfAdmission );
-			
-			}
-				
-			$this -> setKCPEScore( $KCPEScore );
-			
-			if( $yearOfStudyAtAdmission != 0 ) {
-				
-				$this -> setYearOfStudyAtAdmission( $yearOfStudyAtAdmission );
-			
-			}
-			
+			$this -> setEntryScore( $entryScore );
 			$this -> setGender( $gender );
 		
 		}
